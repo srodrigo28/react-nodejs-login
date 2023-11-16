@@ -13,6 +13,7 @@ export const usersLogin = (req, res) => {
         }
     })
 }
+
 export const addUser = (req, res) => {
 
     const q = "INSERT INTO login(`nome`, `email`, `senha`) VALUES(?)";

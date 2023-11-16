@@ -13,7 +13,6 @@ export function Login(){
         e.preventDefault();
 
         // console.log(email, senha);
-
         axios.post(url, {email, senha})
         .then( res => {
             console.log(res.data)
@@ -22,9 +21,14 @@ export function Login(){
             }else{
                 return console.log("FrontEnd: Usuário ou senha Inválidos")
             }
-            
         })
         .catch( err => console.log(err))
+    }
+    const handleCadastro = (e) => {
+        e.preventDefault();
+
+        return navigate('/register')
+
     }
     return(
         <div className="d-flex vh-100 justify-content-center align-items-center bg-primary">
@@ -53,7 +57,7 @@ export function Login(){
                     </div>
                     <div className="d-flex justify-content-around align-items-center">
                         <button type="submit" className="btn btn-outline-primary w-25">Entrar</button>
-                        <button className="btn btn-outline-warning w-25">Register</button>
+                        <button onClick={ handleCadastro } className="btn btn-outline-warning w-25">Register</button>
                     </div>
                 </form>
             </div>
