@@ -1,6 +1,18 @@
 import { db } from "../db.js";
 
 /*** */
+export const usersLogin = (req, res) => {
+    const sql = "SELECT * FROM login WHERE email = ? AND senha = ?";
+
+    db.query(sql, [req.body.email, req.body.senha], (err, data) => {
+        if(err) return res.json("Erro 1");
+        if(data.length > 0 ){
+            return res.json( { "msn: ": "Sucesso", "usuario: " :data} );    
+        }else{
+            return res.json("Erro 2");    
+        }
+    })
+}
 export const addUser = (req, res) => {
 
     const q = "INSERT INTO login(`nome`, `email`, `senha`) VALUES(?)";
