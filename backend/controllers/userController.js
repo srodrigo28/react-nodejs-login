@@ -7,9 +7,9 @@ export const usersLogin = (req, res) => {
     db.query(sql, [req.body.email, req.body.senha], (err, data) => {
         if(err) return res.json("Erro 1");
         if(data.length > 0 ){
-            return res.json( { "msn: ": "Sucesso", "usuario: " :data} );    
+            return res.json( "success" );    
         }else{
-            return res.json("Erro 2");    
+            return res.json("Erro: Api Usuário ou senha");    
         }
     })
 }
