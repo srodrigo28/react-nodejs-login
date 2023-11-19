@@ -1,12 +1,13 @@
 import express from "express";
 
-import { getUsers, addUser, deleteUser, updateUser } from "../controllers/userController.js"
+import { addAfiliado, getAfiliados, getAfiliadosCount } from "../controllers/afiliadoController.js"
 
 const router = express.Router();
 
-router.get("/users", getUsers);
-router.post("/register", addUser);
-router.put("/update/:id", updateUser);
-router.delete("/delete/:id", deleteUser);
+router.get("/afiliados", getAfiliados);
+router.post("/afiliadosG", getAfiliadosCount);
+router.post("/afiliados", addAfiliado);
+// router.put("/update/:id", updateUser);
+// router.delete("/delete/:id", deleteUser);
 
 export default router;

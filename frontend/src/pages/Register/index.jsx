@@ -25,6 +25,7 @@ const Register = () => {
         })
         .catch( err => console.log(err))
     }
+
     return(
         <div className="d-flex vh-100 justify-content-center align-items-center bg-primary">
             <div className="p-3 bg-white w-50">
@@ -60,8 +61,7 @@ const Register = () => {
                     
                 
                 </form>
-            
-        </div>
+            </div>
         </div>
     )
 }

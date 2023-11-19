@@ -4,6 +4,7 @@ import cors from 'cors'
 
 import userRoutes from "./routes/users.js"
 import gestoresRoutes from "./routes/gestor.js"
+import afilidosRoutes from "./routes/afiliados.js"
 
 const app = express()
 
@@ -13,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
 app.use("/", userRoutes)
+app.use("/", afilidosRoutes)
 app.use("/", gestoresRoutes)
 
 app.listen(8081, () => {

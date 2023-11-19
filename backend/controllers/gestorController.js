@@ -18,10 +18,10 @@ export const addGestor = (req, res) => {
 }
 
 // Read
-export const getGestor = async (_, res) => {
-    const q = "SELECT * FROM gestor ORDER BY nome"
+export const getGestor = (_, res) => {
+    const q = "SELECT * FROM gestor"
 
-    await db.query(q, (err, data) => {
+    db.query(q, (err, data) => {
         if(err) return res.json(err)
         return res.status(200).json(data)
     })
@@ -40,7 +40,7 @@ export const getOneGestor = async (req, res) => {
 
 // Update
 export const updateGestor = (req, res) => {
-    const q = "UPDATE gestor SET `nome` = ?, `email` = ?, `telefone`, `senha` = ? "
+    const q = "UPDATE gestor SET `nome` = ?, `email` = ?, `telefone` = ?, `senha` = ? WHERE `id` = ?"
 
     const values = [
         req.body.nome,
@@ -49,7 +49,7 @@ export const updateGestor = (req, res) => {
         req.body.senha
     ]
 
-    db.query(q, [... values, req.params.id], (err) => {
+    db.query(q, [...values, req.params.id], (err) => {
         if(err) return res.json(err)
 
         return res.status(200).json("Atualizado com sucesso")
