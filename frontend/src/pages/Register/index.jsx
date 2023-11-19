@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
     const url = "http://localhost:8081/register";
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -11,15 +13,14 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        alert('Cadastrando')
-
         axios.post(url, {nome, email, senha})
         .then( res => {
-            console.log(res.data)
-            if(res.data === "success"){
-                return alert('Cadastrado com sucesso');
-            }else{
-                return console.log("FrontEnd: Usuário ou senha Inválidos")
+            alert('Cadastrado com sucesso');
+            try{
+                res.data === "success"
+                return navigate('/login')
+            }catch(error){
+                console.log(error)
             }
         })
         .catch( err => console.log(err))
@@ -54,7 +55,7 @@ const Register = () => {
                     </div>
                     <div className="col d-flex justify-content-start align-items-center gap-3">
                         <button className='btn btn-outline-primary' type='submit'>Cadastrar</button>
-                        <Link to='/home' className='btn btn-outline-warning'>Voltar</Link>
+                        <Link to='/login' className='btn btn-outline-warning'>Voltar</Link>
                     </div>
                     
                 

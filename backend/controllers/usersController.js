@@ -1,6 +1,6 @@
 import { db } from "../db.js";
 
-/*** */
+/*** Validando email e Senha */
 export const usersLogin = (req, res) => {
     const sql = "SELECT * FROM login WHERE email = ? AND senha = ?";
 
@@ -14,6 +14,7 @@ export const usersLogin = (req, res) => {
     })
 }
 
+/** Inserindo um Usuário */
 export const addUser = (req, res) => {
 
     const q = "INSERT INTO login(`nome`, `email`, `senha`) VALUES(?)";
@@ -25,12 +26,13 @@ export const addUser = (req, res) => {
     ];
 
     db.query(q, [values], (err) => {
-        if (err) return res.json(values);
+        // if (err) return res.json(values);
 
         return res.status(200).json("Usuário criado com sucesso");
     });
 }
 
+/*** Listando todos usuários */
 export const getUsers = async (req, res) => {
     const q = "SELECT * FROM login ORDER BY nome";
 
@@ -38,6 +40,17 @@ export const getUsers = async (req, res) => {
         if(err) return res.json(err);
         return res.status(200).json(data);
     });
+};
+
+/*** Listando somente 1 */
+export const getOneUser = async (req, res) => {
+    const q = "SELECT id FROM login WHERE `id` = ?";
+
+    db.query(q, [req.params.id], (err, data) => {
+        if(err) return res.json(err);
+
+        return res.status(200).json(data);
+    })
 };
 
 export const updateUser = (req, res) => {
