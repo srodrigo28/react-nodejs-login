@@ -18,7 +18,7 @@ export const addGestor = (req, res) => {
 }
 
 // Read
-export const getGestor = async (req, res) => {
+export const getGestor = async (_, res) => {
     const q = "SELECT * FROM gestor ORDER BY nome"
 
     await db.query(q, (err, data) => {

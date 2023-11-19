@@ -1,13 +1,15 @@
 import express from "express";
 
-import {addGestor, getGestor, getOneGestor, updateGestor, deleteGestor} from '../controllers/gestorController'
+// import { getGestor } from '../controllers/gestorController.js'
+import {addGestor, getGestor, getOneGestor, updateGestor, deleteGestor} from '../controllers/gestorController.js'
 
 const router = express.Router();
 
 router.get("/gestores", getGestor);
-router.post("/gestor", addGestor);
-router.get("/gestor/:id", getOneGestor);
-router.put("/update/:id", updateGestor);
-router.delete("/delete/:id", deleteGestor);
+router.get("/gestores/:id", getOneGestor);
+router.put("/gestores/:id", updateGestor);
+router.delete("/gestores/:id", deleteGestor);
+
+router.post("/gestores", addGestor);
 
 export default router;
